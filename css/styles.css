@@ -20,11 +20,12 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Copperplate, Papyrus, fantasy, sans-serif;
 }
 
 body {
   justify-content: space-evenly;
+  background-color: #3a3f58;
   flex-direction: column;
   display: flex;
   height: 100vh;
@@ -65,6 +66,10 @@ button {
 	margin: 0 auto;
 }
 
+#phrase {
+  border: 5px solid whitesmoke;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -86,7 +91,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #E5E5E5;
 }
 
 
@@ -131,14 +136,14 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #78CF82;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #D94545;
   color: #FFFFFF;
 }
 

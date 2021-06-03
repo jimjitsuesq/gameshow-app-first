@@ -1,7 +1,7 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-const game = new Game();
+let game;
 const startButton = document.getElementById('btn__reset');
 const keyBoard = document.getElementById('qwerty');
 const keyButtons = keyBoard.getElementsByTagName('BUTTON');
@@ -10,6 +10,7 @@ const keyButtons = keyBoard.getElementsByTagName('BUTTON');
  * Listens to the startButton and initializes a new Game instance  when clicked
 */
 startButton.addEventListener('click', () => {
+    game = new Game();
     game.startGame();
 });
 
@@ -20,7 +21,7 @@ startButton.addEventListener('click', () => {
 */
 function idScreenKeys(arr) {
     for (let i = 0; i < arr.length; i++) {
-        arr[i].setAttribute('id', `${arr[i].textContent}`)
+        arr[i].setAttribute('id', `${arr[i].textContent}`);
     }
 }
 idScreenKeys(keyButtons);
@@ -32,7 +33,7 @@ idScreenKeys(keyButtons);
 */
 function simulateClick () {
     document.addEventListener('keyup', (e) => {
-        let regex = /^[A-Za-z]\b/
+        let regex = /^[A-Za-z]\b/;
         if (regex.test(e.key)) {
             const keyPressed = e.key.toLowerCase();
             const keyToPress = document.getElementById(`${keyPressed}`);

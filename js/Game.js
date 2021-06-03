@@ -2,31 +2,32 @@
  * Project 4 - OOP Game App
  * Game.js */
 const overlay = document.getElementById('overlay');
-
+const phrases = [
+    'A Good Man is Hard to Find',
+    'This Too Shall Pass',
+    'Ignorance is Bliss',
+    'A Stitch in Time Saves Nine',
+    'You Live What You Learn'
+];
 class Game {
     constructor () {
         this.missed = 0;
-        this.phrases = [
-            'A Good Man is Hard to Find',
-            'This Too Shall Pass',
-            'Ignorance is Bliss',
-            'A Stitch in Time Saves Nine',
-            'A Problem Shared is a Problem Halved'
-            /* 'A',
-            'B',
-            'C',
-            'D',
-            'E', */
-        ];
+        this.phrases = this.createPhrases(phrases);
         this.activePhrase = null;
     }
+    createPhrases(arr) {
+        const Phrases = [];
+        arr.forEach( phrase => Phrases.push(new Phrase(phrase)));
+        return Phrases;
+    }
+    
     /**
      * Selects a phrase from the phrases array at random and uses it to create
      * a new Phrase object.
      */
     getRandomPhrase() {
         const randomNumber = Math.floor(Math.random() * this.phrases.length);
-        return new Phrase(this.phrases[randomNumber]);
+        return (this.phrases[randomNumber]);
     }
     /**
      * Calls the getRandomPhrase function and assigns the result to the
@@ -41,9 +42,9 @@ class Game {
      * Takes the key and uses the checkLetter function to find any matches 
      * between the key and each entry in the phraseArray array contained in 
      * the Phrase object. If the key matches at least once, the key is assigned
-     * the "chosen" class and checkForWin function is called. If there are no
-     * matches, the key is assigned the "wrong" class and the removeLife 
-     * function is called.
+     * the "chosen" class, the letter is added to the matchedLetterList, 
+     * and checkForWin is called. If there are no matches, the key is assigned 
+     * the "wrong" class and the removeLife function is called.
      * @param {Object} key The key clicked on the onscreen keyboard sent from
      * the event listener that called this function.
      */
@@ -53,6 +54,7 @@ class Game {
         game.activePhrase.phraseArray.forEach(letter => {
             if (game.activePhrase.checkLetter(letter, key)) {
                 game.activePhrase.showMatchedLetter(letter);
+                matchedLetterList.push(letter);
                 matchCount++;
             }
         });
@@ -62,6 +64,9 @@ class Game {
         } else {
             key.classList.add('wrong');
             this.removeLife();
+        }
+        if (this.checkForWin()) {
+            this.gameOver('win');
         }
     }
     /**
@@ -78,16 +83,13 @@ class Game {
         }
     }
     /**
-     * Creates a noSpacesArray array to compare with the matchedLetterList.
-     * If they are the same length, the gameOver function is called and the
-     * "win" parameter is sent to it.
+     * Creates a noSpacesArray array to compare with the matchedLetterList and
+     * checks to see if the length is the same as the array containing all 
+     * matched letters.
      */
     checkForWin() {
-        let noSpacesArray = [];
-        noSpacesArray = game.activePhrase.phraseArray.filter(character => character !== " ");
-        if (matchedLetterList.length === noSpacesArray.length) {
-            this.gameOver('win');
-        }
+        const noSpacesArray = game.activePhrase.phraseArray.filter(character => character !== " ");
+        return matchedLetterList.length === noSpacesArray.length
     }
     /**
      * Hides the game board by revealing the overlay. Modifies the game-over
@@ -101,17 +103,17 @@ class Game {
         overlay.style.display = 'block';
         if (result === 'win') {
             overlay.className = 'win';
-            gameOverMessage.innerHTML = "Congratuations! You win!"
+            gameOverMessage.innerHTML = "Congratuations! You win!";
         } else {
             overlay.className = 'lose';
-            gameOverMessage.innerHTML = "You lost. :( Try again!"
+            gameOverMessage.innerHTML = "You lost. :( Try again!";
         }
         /** 
          * Clears the Phrase ul of all li, resets all class names, scoreboard
          * display and running variables.
         */
         while (letterList.firstChild) {
-            letterList.removeChild(letterList.firstChild)
+            letterList.removeChild(letterList.firstChild);
         }
         matchedLetterList = [];
         game.missed = 0;
@@ -122,7 +124,7 @@ class Game {
         const scoreboard = document.getElementById('scoreboard');
         const hearts = scoreboard.getElementsByTagName('IMG');
         for (let i = 0; i < hearts.length; i++) {
-            hearts[i].setAttribute('src', 'images/liveHeart.png')
+            hearts[i].setAttribute('src', 'images/liveHeart.png');
         }
     }
 }

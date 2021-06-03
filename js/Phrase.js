@@ -28,29 +28,33 @@ class Phrase {
      */
     addPhraseToDisplay() {
         this.createPhraseArray(game.activePhrase.phrase);
+        let characterCount = 0;
         game.activePhrase.phraseArray.forEach(letter => {
             const li = document.createElement('li');
             letterList.appendChild(li);
             if (letter === ' ') {
-                li.classList.add('space');
-                li.innerHTML = (" ");
+                //li.classList.add('space');
+                if (characterCount > 10) {
+                    li.outerHTML = `<li class='space'></li></ul><br/><ul>`;
+                    characterCount = 0;
+                } else {
+                    li.outerHTML = `<li class='space'> </li>`;  
+                }
+                
             } else {
                 li.outerHTML = (`<li class="hide letter ${letter}">${letter}</li>`);
             }
+            characterCount++;
         })
     }
     /**
-     * Compares the letter to the key. If they match, the letter is added to 
-     * the matchedLetterList and the function returns "true".
+     * Compares the letter to the key and returns true or false.
      * @param {String} letter From the phrase array
      * @param {Object} key From the event listener added to the onscreen keys
      * @returns {Boolean}
      */
     checkLetter(letter, key) {
-       if (letter === key.textContent) {
-            matchedLetterList.push(letter);
-            return true;
-        };
+       return letter === key.textContent
     }
     /**
      * Retrieves all li elements that match the letter and shows them by 
