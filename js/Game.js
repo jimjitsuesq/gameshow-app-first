@@ -31,21 +31,21 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
         noSpacesArray = game.activePhrase.phraseArray.filter(character => character !== " ");
     }
-    handleInteraction(button) {
+    handleInteraction(key) {
         let matchCount = 0;
-        console.log(button);
-        button.disabled = true;
+        console.log(key);
+        key.disabled = true;
         game.activePhrase.phraseArray.forEach(letter => {
-            if (game.activePhrase.checkLetter(letter, button)) {
+            if (game.activePhrase.checkLetter(letter, key)) {
             game.activePhrase.showMatchedLetter(letter);
             matchCount ++;
             }
         });
         if (matchCount > 0) {
-            button.classList.add('chosen');
+            key.classList.add('chosen');
             this.checkForWin();
         } else {
-            button.classList.add('wrong');
+            key.classList.add('wrong');
             this.removeLife();
         }
     }
