@@ -4,15 +4,16 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
+  --color-win: #0074D9;
+  --color-lose: #85144b;
   --color-start: #5b85b7;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
-  --font-size-medium: 20px;
+  --font-size-medium: 30px;
+  --font-size-small: 20px;
   --transition: all .2s ease-in-out;
 }
 
@@ -25,7 +26,7 @@
 
 body {
   justify-content: space-evenly;
-  background-color: #3a3f58;
+  background-color: #434b73;
   flex-direction: column;
   display: flex;
   height: 100vh;
@@ -52,6 +53,7 @@ button {
   border: 1px solid transparent;
   padding: .5rem 1rem;
   color: var(--color-keys);
+  font-weight: bold;
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
   border-radius: 5px;
@@ -64,10 +66,7 @@ button {
 #btn__reset {
 	width: 200px;
 	margin: 0 auto;
-}
-
-#phrase {
-  border: 5px solid whitesmoke;
+  font-size: var(--font-size-small);
 }
 
 .main-container {
@@ -98,7 +97,8 @@ button {
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
+  font-weight:bold;
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
@@ -117,10 +117,10 @@ button {
 .show {
   color: #fff;
   background-color: #4ac0d5;
-  font-size: 20px;
+  font-size: 30px;
   height: 65px;
   width: 65px;
-  padding: 20px 1px 0 1px;
+  padding: 9px 1px 0 1px;
   margin-right: 2px;
   border-radius: 5px;
   -webkit-animation-duration: .5s;
@@ -185,7 +185,7 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #434b73;
 }
 
 .start a {
@@ -194,6 +194,7 @@ button {
 
 .win {
   background-color: var(--color-win);
+  padding-top:450px;
 }
 
 .win a {
@@ -201,7 +202,9 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: var(--color-lose);
+  padding-top:450px;
+
 }
 
 .lose a {
