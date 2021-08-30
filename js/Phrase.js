@@ -1,6 +1,3 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Phrase.js */
 const phraseDiv = document.getElementById('phrase');
 const letterList = phraseDiv.firstElementChild;
 let matchedLetterList = [];

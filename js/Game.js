@@ -1,6 +1,3 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
 const overlay = document.getElementById('overlay');
 const phrases = [
     'A Good Man is Hard to Find',
